@@ -28803,6 +28803,14 @@
 	
 	var _Modal2 = _interopRequireDefault(_Modal);
 	
+	var _Tab = __webpack_require__(297);
+	
+	var _Tab2 = _interopRequireDefault(_Tab);
+	
+	var _TabPane = __webpack_require__(298);
+	
+	var _TabPane2 = _interopRequireDefault(_TabPane);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28823,7 +28831,8 @@
 	
 	        _this.state = {
 	            list: (0, _immutable.fromJS)([{ cnt: '1' }, { cnt: '2' }, { cnt: '3' }]),
-	            flag: false
+	            flag: false,
+	            selected: 0
 	        };
 	        return _this;
 	    }
@@ -28837,32 +28846,22 @@
 	            this.setState({
 	                list: this.state.list.push((0, _immutable.fromJS)({ cnt: Math.random() }))
 	            });
-	            console.log();
 	        }
 	    }, {
 	        key: 'switchFlag',
 	        value: function switchFlag() {
-	            var _this2 = this;
-	
-	            this.setState({ flag: !this.state.flag }, function () {
-	                console.log(0, _this2.state.flag);
-	            });
-	            console.log(1, this.state.flag);
+	            this.setState({ flag: !this.state.flag });
 	        }
 	    }, {
 	        key: 'componentWillUpdate',
-	        value: function componentWillUpdate() {
-	            console.log(2, this.state.flag);
-	        }
+	        value: function componentWillUpdate() {}
 	    }, {
 	        key: 'componentDidUpdate',
-	        value: function componentDidUpdate(prevProps, prevState) {
-	            console.log(3, this.state.flag);
-	        }
+	        value: function componentDidUpdate(prevProps, prevState) {}
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this3 = this;
+	            var _this2 = this;
 	
 	            return _react2.default.createElement(
 	                'div',
@@ -28870,7 +28869,7 @@
 	                _react2.default.createElement(
 	                    'button',
 	                    { onClick: function onClick() {
-	                            _this3.switchFlag();
+	                            _this2.switchFlag();
 	                        } },
 	                    this.state.flag.toString()
 	                ),
@@ -28882,11 +28881,6 @@
 	                _react2.default.createElement(_list2.default, { list: this.state.list }),
 	                this.props.children,
 	                _react2.default.createElement(
-	                    Notupdate,
-	                    null,
-	                    _react2.default.createElement(Notupdatechild, { flag: this.state.flag.toString() })
-	                ),
-	                _react2.default.createElement(
 	                    _Modal2.default,
 	                    { show: this.state.flag, className: 'modal' },
 	                    _react2.default.createElement(
@@ -28897,10 +28891,36 @@
 	                    _react2.default.createElement(
 	                        'button',
 	                        { onClick: function onClick() {
-	                                _this3.switchFlag();
+	                                _this2.switchFlag();
 	                            } },
 	                        'x'
 	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _Tab2.default,
+	                    { selected: this.state.selected, isToggle: this.state.flag },
+	                    _react2.default.createElement(
+	                        _TabPane2.default,
+	                        { label: 'tab 1' },
+	                        'tab 1111'
+	                    ),
+	                    _react2.default.createElement(
+	                        _TabPane2.default,
+	                        { label: 'tab 2' },
+	                        'tab 2222'
+	                    ),
+	                    _react2.default.createElement(
+	                        _TabPane2.default,
+	                        { label: 'tab 3' },
+	                        'tab 3333'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'button',
+	                    { onClick: function onClick() {
+	                            return _this2.setState({ selected: null });
+	                        } },
+	                    '\u6536\u8D77'
 	                )
 	            );
 	        }
@@ -28915,63 +28935,6 @@
 	    };
 	};
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(App);
-	
-	var Notupdate = function (_React$PureComponent) {
-	    _inherits(Notupdate, _React$PureComponent);
-	
-	    function Notupdate() {
-	        _classCallCheck(this, Notupdate);
-	
-	        return _possibleConstructorReturn(this, (Notupdate.__proto__ || Object.getPrototypeOf(Notupdate)).apply(this, arguments));
-	    }
-	
-	    _createClass(Notupdate, [{
-	        key: 'componentWillUpdate',
-	
-	
-	        // shouldComponentUpdate(nextProps, nextState) {
-	        // return false;
-	        // }
-	
-	        value: function componentWillUpdate(nextProps, nextState) {
-	            console.log(nextProps, this.props);
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                this.props.children
-	            );
-	        }
-	    }]);
-	
-	    return Notupdate;
-	}(_react2.default.PureComponent);
-	
-	var Notupdatechild = function (_React$Component2) {
-	    _inherits(Notupdatechild, _React$Component2);
-	
-	    function Notupdatechild() {
-	        _classCallCheck(this, Notupdatechild);
-	
-	        return _possibleConstructorReturn(this, (Notupdatechild.__proto__ || Object.getPrototypeOf(Notupdatechild)).apply(this, arguments));
-	    }
-	
-	    _createClass(Notupdatechild, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                this.props.flag
-	            );
-	        }
-	    }]);
-	
-	    return Notupdatechild;
-	}(_react2.default.Component);
 
 /***/ },
 /* 274 */
@@ -34054,6 +34017,19 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	/**
+	 * Modal弹框层
+	 * 
+	 * show: 是否显示弹框
+	 * transitionName: 动画名称
+	 * showMask: 是否显示遮罩
+	 * maskBackgroundColor: 遮罩背景色
+	 * maskClick: 点击遮罩事件
+	 * className: 弹框class
+	 * 
+	 * @class Modal
+	 * @extends {Component}
+	 */
 	var Modal = function (_Component) {
 	    _inherits(Modal, _Component);
 	
@@ -34069,8 +34045,11 @@
 	            var _props = this.props,
 	                children = _props.children,
 	                show = _props.show,
-	                showMask = _props.showMask,
+	                transitionName = _props.transitionName,
 	                transitionTimeOut = _props.transitionTimeOut,
+	                showMask = _props.showMask,
+	                maskBackgroundColor = _props.maskBackgroundColor,
+	                maskClick = _props.maskClick,
 	                className = _props.className;
 	
 	            var style = {
@@ -34097,7 +34076,7 @@
 	                        _react2.default.createElement(
 	                            _reactAddonsCssTransitionGroup2.default,
 	                            {
-	                                transitionName: 'modal',
+	                                transitionName: transitionName,
 	                                component: 'div',
 	                                transitionAppear: true,
 	                                transitionAppearTimeout: transitionTimeOut,
@@ -34112,7 +34091,11 @@
 	                            )
 	                        )
 	                    ),
-	                    showMask ? _react2.default.createElement(_Mask2.default, { show: show, transitionTimeOut: transitionTimeOut, onClick: function onClick() {} }) : null
+	                    showMask ? _react2.default.createElement(_Mask2.default, { show: show,
+	                        transitionName: transitionName,
+	                        transitionTimeOut: transitionTimeOut,
+	                        backgroundColor: maskBackgroundColor,
+	                        onClick: maskClick }) : null
 	                )
 	            );
 	        }
@@ -34123,8 +34106,11 @@
 	
 	Modal.defaultProps = {
 	    show: false,
+	    transitionName: 'modal',
+	    transitionTimeOut: 300,
 	    showMask: true,
-	    transitionTimeOut: 300
+	    maskBackgroundColor: 'rgba(0,0,0,0.5)',
+	    maskClick: function maskClick() {}
 	};
 	
 	exports.default = Modal;
@@ -36364,7 +36350,8 @@
 	                backgroundColor = _props.backgroundColor,
 	                transitionTimeOut = _props.transitionTimeOut,
 	                show = _props.show,
-	                others = _objectWithoutProperties(_props, ['backgroundColor', 'transitionTimeOut', 'show']);
+	                transitionName = _props.transitionName,
+	                others = _objectWithoutProperties(_props, ['backgroundColor', 'transitionTimeOut', 'show', 'transitionName']);
 	
 	            var style = {
 	                position: 'fixed',
@@ -36383,7 +36370,7 @@
 	                    transitionEnter: false,
 	                    transitionLeave: true,
 	                    transitionLeaveTimeout: transitionTimeOut,
-	                    transitionName: 'modal' },
+	                    transitionName: transitionName },
 	                show ? _react2.default.createElement('div', _extends({ style: style }, others)) : null
 	            );
 	        }
@@ -36395,7 +36382,8 @@
 	Mask.defaultProps = {
 	    transitionTimeOut: 300,
 	    backgroundColor: 'rgba(0,0,0,0.5)',
-	    show: false
+	    show: false,
+	    transitionName: 'modal'
 	};
 	
 	exports.default = Mask;
@@ -36980,6 +36968,174 @@
 		return fixedCss;
 	};
 
+
+/***/ },
+/* 297 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Tabs = function (_Component) {
+	    _inherits(Tabs, _Component);
+	
+	    function Tabs(props) {
+	        _classCallCheck(this, Tabs);
+	
+	        var _this = _possibleConstructorReturn(this, (Tabs.__proto__ || Object.getPrototypeOf(Tabs)).call(this, props));
+	
+	        _this.state = {
+	            selected: _this.props.selected
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(Tabs, [{
+	        key: '_getTabHeaders',
+	        value: function _getTabHeaders() {
+	            var _this2 = this;
+	
+	            var children = this.props.children;
+	
+	            var labels = children.map(function (child, index) {
+	                var active = _this2.state.selected === index ? 'z-crt' : '';
+	                return _react2.default.createElement(
+	                    'li',
+	                    { key: index },
+	                    _react2.default.createElement(
+	                        'a',
+	                        { href: 'javascript:;',
+	                            className: active,
+	                            onClick: _this2.handleLabelClick.bind(_this2, index) },
+	                        child.props.label
+	                    )
+	                );
+	            });
+	            return _react2.default.createElement(
+	                'ul',
+	                null,
+	                labels
+	            );
+	        }
+	    }, {
+	        key: '_getTabContent',
+	        value: function _getTabContent() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                this.props.children[this.state.selected]
+	            );
+	        }
+	    }, {
+	        key: 'handleLabelClick',
+	        value: function handleLabelClick(index) {
+	            if (this.state.selected === index && this.props.isToggle) this.setState({ selected: null });else this.setState({ selected: index });
+	        }
+	    }, {
+	        key: 'componentWillReceiveProps',
+	        value: function componentWillReceiveProps(nextProps) {
+	            if (nextProps.selected !== this.state.selected) this.setState({ selected: nextProps.selected });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                this._getTabHeaders(),
+	                this._getTabContent()
+	            );
+	        }
+	    }]);
+	
+	    return Tabs;
+	}(_react.Component);
+	
+	Tabs.propTypes = {
+	    selected: _react.PropTypes.number,
+	    isToggle: _react.PropTypes.bool
+	};
+	
+	Tabs.defaultProps = {
+	    selected: 0,
+	    isToggle: false
+	};
+	
+	exports.default = Tabs;
+
+/***/ },
+/* 298 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var TabPane = function (_Component) {
+	    _inherits(TabPane, _Component);
+	
+	    function TabPane() {
+	        _classCallCheck(this, TabPane);
+	
+	        return _possibleConstructorReturn(this, (TabPane.__proto__ || Object.getPrototypeOf(TabPane)).apply(this, arguments));
+	    }
+	
+	    _createClass(TabPane, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                this.props.children
+	            );
+	        }
+	    }]);
+	
+	    return TabPane;
+	}(_react.Component);
+	
+	TabPane.defaultProps = {
+	    label: ''
+	};
+	
+	TabPane.propTypes = {
+	    label: _react.PropTypes.string.isRequired
+	};
+	
+	exports.default = TabPane;
 
 /***/ }
 /******/ ]);

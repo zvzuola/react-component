@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import Lists from '../component/list';
 import { List, fromJS } from 'immutable';
 import Modal from '../component/Modal';
+import Tabs from '../component/Tab';
+import TabPane from '../component/Tab/TabPane';
 
 const URL = window.URL || window.webkitURL;
 
@@ -12,7 +14,8 @@ class App extends React.Component {
         super(props);
         this.state = {
             list: fromJS([{ cnt: '1' }, { cnt: '2' }, { cnt: '3' }]),
-            flag: false
+            flag: false,
+            selected: 0
         }
     }
 
@@ -23,20 +26,16 @@ class App extends React.Component {
         this.setState({
             list: this.state.list.push(fromJS({ cnt: Math.random() }))
         })
-        console.log()
     }
 
     switchFlag() {
-        this.setState({ flag: !this.state.flag }, () => { console.log(0, this.state.flag) });
-        console.log(1, this.state.flag)
+        this.setState({ flag: !this.state.flag });
     }
 
     componentWillUpdate() {
-        console.log(2, this.state.flag);
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log(3, this.state.flag)
     }
 
     render() {
@@ -46,14 +45,25 @@ class App extends React.Component {
                 <button onClick={this.addItem.bind(this)}>添加</button>
                 <Lists list={this.state.list} />
                 {this.props.children}
-                <Notupdate>
-                    <Notupdatechild flag={this.state.flag.toString()} />
-                </Notupdate>
 
                 <Modal show={this.state.flag} className='modal'>
                     <div>Modal</div>
                     <button onClick={() => { this.switchFlag() }}>x</button>
                 </Modal>
+
+                <Tabs selected={this.state.selected} isToggle={this.state.flag}>
+                    <TabPane label='tab 1'>
+                        tab 1111
+                    </TabPane>
+                    <TabPane label='tab 2'>
+                        tab 2222
+                    </TabPane>
+                    <TabPane label='tab 3'>
+                        tab 3333
+                    </TabPane>
+                </Tabs>
+
+                <button onClick={() => this.setState({selected: null})}>收起</button>                
 
             </div>
         )
@@ -63,32 +73,3 @@ let mapStateToProps = state => ({
     list: state.list
 })
 export default connect(mapStateToProps)(App);
-
-class Notupdate extends React.PureComponent {
-
-    // shouldComponentUpdate(nextProps, nextState) {
-    // return false;
-    // }
-
-    componentWillUpdate(nextProps, nextState) {
-        console.log(nextProps, this.props)
-    }
-
-    render() {
-        return (
-            <div>
-                {this.props.children}
-            </div>
-        );
-    }
-}
-
-class Notupdatechild extends React.Component {
-    render() {
-        return (
-            <div>
-                {this.props.flag}
-            </div>
-        );
-    }
-}

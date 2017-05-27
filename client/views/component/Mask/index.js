@@ -4,7 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 const noop = () => { }
 class Mask extends Component {
     render() {
-        const { backgroundColor, transitionTimeOut, show, ...others } = this.props
+        const { backgroundColor, transitionTimeOut, show, transitionName, ...others } = this.props
         const style = {
             position: 'fixed',
             top: 0,
@@ -21,7 +21,7 @@ class Mask extends Component {
                 transitionEnter={false}
                 transitionLeave
                 transitionLeaveTimeout={transitionTimeOut}
-                transitionName='modal'>
+                transitionName={transitionName}>
                 {show ? <div style={style} {...others}></div> : null}
             </ReactCSSTransitionGroup>
         );
@@ -31,7 +31,8 @@ class Mask extends Component {
 Mask.defaultProps = {
     transitionTimeOut: 300,
     backgroundColor: 'rgba(0,0,0,0.5)',
-    show: false
+    show: false,
+    transitionName: 'modal'
 }
 
 export default Mask;
