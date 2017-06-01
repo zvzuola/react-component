@@ -9,6 +9,7 @@
   "author": "wei.zhao",
   "license": "ISC",
   "dependencies": {
+    "classnames": "^2.2.5",
     "immutable": "^3.8.1",
     "koa": "^1.2.4",
     "koa-better-body": "^3.0.2",

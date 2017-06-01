@@ -28807,7 +28807,7 @@
 	
 	var _Tab2 = _interopRequireDefault(_Tab);
 	
-	var _TabPane = __webpack_require__(298);
+	var _TabPane = __webpack_require__(299);
 	
 	var _TabPane2 = _interopRequireDefault(_TabPane);
 	
@@ -28882,7 +28882,7 @@
 	                this.props.children,
 	                _react2.default.createElement(
 	                    _Modal2.default,
-	                    { show: this.state.flag, className: 'modal' },
+	                    { show: this.state.flag, className: 'm-modal' },
 	                    _react2.default.createElement(
 	                        'div',
 	                        null,
@@ -28906,7 +28906,7 @@
 	                    ),
 	                    _react2.default.createElement(
 	                        _TabPane2.default,
-	                        { label: 'tab 2' },
+	                        { label: 'tab 2', disabled: true },
 	                        'tab 2222'
 	                    ),
 	                    _react2.default.createElement(
@@ -36428,7 +36428,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".modal {\n    width: 300px;\n    height: 300px;\n    background: #fff;\n}\n\n.modal-enter {\n  opacity: 0.01;\n}\n\n.modal-enter.modal-enter-active {\n  opacity: 1;\n  transition: opacity 300ms ease-in;\n}\n\n.modal-leave {\n  opacity: 1;\n}\n\n.modal-leave.modal-leave-active {\n  opacity: 0.01;\n  transition: opacity 300ms ease-in;\n}", ""]);
+	exports.push([module.id, "\n.modal-enter {\n  opacity: 0.01;\n}\n\n.modal-enter.modal-enter-active {\n  opacity: 1;\n  transition: opacity 300ms ease-in;\n}\n\n.modal-leave {\n  opacity: 1;\n}\n\n.modal-leave.modal-leave-active {\n  opacity: 0.01;\n  transition: opacity 300ms ease-in;\n}", ""]);
 	
 	// exports
 
@@ -36979,11 +36979,17 @@
 	    value: true
 	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _classNames = __webpack_require__(298);
+	
+	var _classNames2 = _interopRequireDefault(_classNames);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -37015,15 +37021,24 @@
 	            var children = this.props.children;
 	
 	            var labels = children.map(function (child, index) {
-	                var active = _this2.state.selected === index ? 'z-crt' : '';
+	                var active = _this2.state.selected === index;
+	                var disabled = child.props.disabled;
+	                var props = {};
+	                if (!disabled) props.onClick = _this2.handleLabelClick.bind(_this2, index);
+	
+	                var labelClasses = (0, _classNames2.default)({
+	                    'z-crt': active,
+	                    'z-dis': disabled
+	                });
+	
 	                return _react2.default.createElement(
 	                    'li',
-	                    { key: index },
+	                    { key: index,
+	                        className: labelClasses },
 	                    _react2.default.createElement(
 	                        'a',
-	                        { href: 'javascript:;',
-	                            className: active,
-	                            onClick: _this2.handleLabelClick.bind(_this2, index) },
+	                        _extends({ href: 'javascript:;'
+	                        }, props),
 	                        child.props.label
 	                    )
 	                );
@@ -37082,6 +37097,60 @@
 
 /***/ },
 /* 298 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	  Copyright (c) 2016 Jed Watson.
+	  Licensed under the MIT License (MIT), see
+	  http://jedwatson.github.io/classnames
+	*/
+	/* global define */
+	
+	(function () {
+		'use strict';
+	
+		var hasOwn = {}.hasOwnProperty;
+	
+		function classNames () {
+			var classes = [];
+	
+			for (var i = 0; i < arguments.length; i++) {
+				var arg = arguments[i];
+				if (!arg) continue;
+	
+				var argType = typeof arg;
+	
+				if (argType === 'string' || argType === 'number') {
+					classes.push(arg);
+				} else if (Array.isArray(arg)) {
+					classes.push(classNames.apply(null, arg));
+				} else if (argType === 'object') {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
+					}
+				}
+			}
+	
+			return classes.join(' ');
+		}
+	
+		if (typeof module !== 'undefined' && module.exports) {
+			module.exports = classNames;
+		} else if (true) {
+			// register as 'classnames', consistent with npm package name
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+				return classNames;
+			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else {
+			window.classNames = classNames;
+		}
+	}());
+
+
+/***/ },
+/* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

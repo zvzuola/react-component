@@ -46,7 +46,7 @@ class App extends React.Component {
                 <Lists list={this.state.list} />
                 {this.props.children}
 
-                <Modal show={this.state.flag} className='modal'>
+                <Modal show={this.state.flag} className='m-modal'>
                     <div>Modal</div>
                     <button onClick={() => { this.switchFlag() }}>x</button>
                 </Modal>
@@ -55,7 +55,7 @@ class App extends React.Component {
                     <TabPane label='tab 1'>
                         tab 1111
                     </TabPane>
-                    <TabPane label='tab 2'>
+                    <TabPane label='tab 2' disabled>
                         tab 2222
                     </TabPane>
                     <TabPane label='tab 3'>

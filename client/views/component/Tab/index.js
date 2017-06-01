@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import classNames from 'classNames';
 
 class Tabs extends Component {
     constructor(props) {
@@ -11,12 +12,22 @@ class Tabs extends Component {
     _getTabHeaders() {
         const { children } = this.props;
         let labels = children.map((child, index) => {
-            let active = this.state.selected === index ? 'z-crt' : '';
+            let active = this.state.selected === index;
+            let disabled = child.props.disabled;
+            let props = {}
+            if (!disabled)
+                props.onClick = this.handleLabelClick.bind(this, index)
+
+            let labelClasses = classNames({
+                'z-crt': active,
+                'z-dis': disabled
+            });
+
             return (
-                <li key={index}>
+                <li key={index}
+                    className={labelClasses}>
                     <a href='javascript:;'
-                        className={active}
-                        onClick={this.handleLabelClick.bind(this, index)}>{child.props.label}</a>
+                        {...props}>{child.props.label}</a>
                 </li>
             )
         })

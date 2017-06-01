@@ -3,7 +3,7 @@ var webpack = require('webpack');
 var node_modules = path.resolve(__dirname, 'node_modules');
 
 var dir_client = path.resolve(__dirname, './client/views/containers');
-var dir_dist = path.resolve(__dirname, './public/dist');
+var dir_dist = path.resolve(__dirname, './public/dist/js');
 
 module.exports = {
   entry: path.resolve(dir_client, 'index.js'),
