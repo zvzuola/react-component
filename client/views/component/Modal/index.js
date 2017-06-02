@@ -6,14 +6,14 @@ import './modal.css';
 
 /**
  * Modal弹框层
- * 
+ *
  * show: 是否显示弹框
  * transitionName: 动画名称
  * showMask: 是否显示遮罩
  * maskBackgroundColor: 遮罩背景色
  * maskClick: 点击遮罩事件
  * className: 弹框class
- * 
+ *
  * @class Modal
  * @extends {Component}
  */
@@ -33,29 +33,32 @@ class Modal extends Component {
             transition: show
                 ? '0ms left 0ms'
                 : `0ms left ${transitionTimeOut}ms`
-        }
+        };
         return (
             <Layout>
                 <div>
                     <div style={style}>
                         <ReactCSSTransitionGroup
-                            transitionName={transitionName}
-                            component='div'
-                            transitionAppear
-                            transitionAppearTimeout={transitionTimeOut}
-                            transitionEnter
-                            transitionEnterTimeout={transitionTimeOut}
-                            transitionLeave
-                            transitionLeaveTimeout={transitionTimeOut}>
+                          transitionName={transitionName}
+                          component="div"
+                          transitionAppear
+                          transitionAppearTimeout={transitionTimeOut}
+                          transitionEnter
+                          transitionEnterTimeout={transitionTimeOut}
+                          transitionLeave
+                          transitionLeaveTimeout={transitionTimeOut}
+                        >
                             {show && <div className={className}>{children}</div>}
                         </ReactCSSTransitionGroup>
                     </div>
                     {showMask
-                        ? <Mask show={show}
-                            transitionName={transitionName}
-                            transitionTimeOut={transitionTimeOut}
-                            backgroundColor={maskBackgroundColor}
-                            onClick={maskClick} />
+                        ? <Mask
+                          show={show}
+                          transitionName={transitionName}
+                          transitionTimeOut={transitionTimeOut}
+                          backgroundColor={maskBackgroundColor}
+                          onClick={maskClick}
+                        />
                         : null
                     }
                 </div>
@@ -71,6 +74,6 @@ Modal.defaultProps = {
     showMask: true,
     maskBackgroundColor: 'rgba(0,0,0,0.5)',
     maskClick: () => {}
-}
+};
 
 export default Modal;

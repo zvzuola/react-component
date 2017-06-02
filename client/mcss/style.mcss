@@ -1,1 +1,3 @@
+$prefix = 'WD_';
 @import "module.mcss";
+@import "tab.mcss";

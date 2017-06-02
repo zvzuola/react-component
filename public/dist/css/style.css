@@ -3,3 +3,24 @@
 	height:300px;
 	background:#fff;
 }
+.WD_nav-tabs{
+	border-bottom:1px solid #ddd;
+}
+.WD_nav-tabs >li{
+	float:left;
+	margin-bottom:-1px;
+}
+.WD_nav-tabs >li >a{
+	border:1px solid transparent;
+	border-radius:2px 2px 0 0;
+}
+.WD_nav-tabs >li >a:hover{
+	border-color:#eee #eee #ddd;
+}
+.WD_nav-tabs >li.z-crt>a,.WD_nav-tabs >li.z-crt>a:hover,.WD_nav-tabs >li.z-crt>a:focus{
+	color:#555;
+	background-color:#fff;
+	border:1px solid #ddd;
+	border-bottom-color:transparent;
+	cursor:default;
+}

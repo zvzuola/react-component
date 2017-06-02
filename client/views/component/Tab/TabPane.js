@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 class TabPane extends Component {
     render() {
@@ -9,13 +9,5 @@ class TabPane extends Component {
         );
     }
 }
-
-TabPane.defaultProps = {
-    label: ''
-}
-
-TabPane.propTypes = {
-    label: PropTypes.string.isRequired
-};
 
 export default TabPane;

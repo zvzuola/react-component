@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 class Layout extends Component {
@@ -9,7 +9,7 @@ class Layout extends Component {
         this.appendIntoBody();
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate() {
         this.appendIntoBody();
     }
 
@@ -19,7 +19,7 @@ class Layout extends Component {
     }
 
     appendIntoBody() {
-        ReactDOM.unstable_renderSubtreeIntoContainer(this, this.props.children, this.container)
+        ReactDOM.unstable_renderSubtreeIntoContainer(this, this.props.children, this.container);
     }
 
     render() {

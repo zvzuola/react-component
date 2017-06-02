@@ -1,0 +1,200 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": "airbnb",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        // 缩进4个空格
+        "indent": [
+            "error",
+            4
+        ],
+        // 采用unix换行符
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        // 强制使用分号，禁止多余的分号
+        "semi": [
+            "error",
+            "always"
+        ],
+        // jsx文件缩进改为4个空格
+        "react/jsx-indent": [
+            "error",
+            4
+        ],
+        // 允许js文件里面写jsx语法
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx"
+                ]
+            }
+        ],
+        // 允许使用数组index作为组件的key
+        "react/no-array-index-key": [
+            "off",
+            "always"
+        ],
+        // 允许在组件props中使用bind方法 
+        "react/jsx-no-bind": [
+            "off",
+            "always"
+        ],
+        // 允许不检查props的PropTypes合法性校验
+        "react/prop-types": [
+            "off",
+            "always"
+        ],
+        // 允许标识符中有悬空下划线
+        "no-underscore-dangle": [
+            "off",
+            "always"
+        ],
+        // 允许console语句
+        "no-console": [
+            "off",
+            "always"
+        ],
+        // 允许一元操作符
+        "no-plusplus": [
+            "off",
+            "always"
+        ],
+        //  允许链式赋值
+        "no-multi-assign": [
+            "off",
+            "always"
+        ],
+        // 允许使用字符串作为ref
+        "react/no-string-refs": [
+            "off",
+            "always"
+        ],
+        // 允许混合使用不同的操作符
+        "no-mixed-operators": [
+            "off",
+            "always"
+        ],
+        // 允许使用continue语句
+        "no-continue": [
+            "off",
+            "always"
+        ],
+        // 允许class方法可以不用this
+        "class-methods-use-this": [
+            "off",
+            "always"
+        ],
+        // 强制一行的最大长度不能超过160，默认是100
+        "max-len": [
+            "error",
+            200
+        ],
+        // 允许使用 javascript: url
+        "no-script-url": [
+            "off",
+            "always"
+        ],
+        // 要求对象字面量属性名称用引号括起来
+        "quote-props": [
+            "off",
+            "always"
+        ],
+        // 允许添加事件
+        "jsx-a11y/no-noninteractive-element-interactions": [
+            "off",
+            "always"
+        ],
+        // 允许使用未使用过的表达式
+        "no-unused-expressions": [
+            "off",
+            "always"
+        ],
+        // 禁用特定的语法
+        "no-restricted-syntax": [
+            "off",
+            "always"
+        ],
+        // 要求 for-in 循环中有一个 if 语句
+        "guard-for-in": [
+            "off",
+            "always"
+        ],
+        "react/no-did-mount-set-state": [
+            "off",
+            "always"
+        ],
+        "react/no-find-dom-node": [
+            "off",
+            "always"
+        ],
+        "react/sort-comp": [
+            "off",
+            "always"
+        ],
+        "array-callback-return": [
+            "off",
+            "always"
+        ],
+        "no-nested-ternary": [
+            "off",
+            "always"
+        ],
+        // 禁止对 function 的参数进行重新赋值
+        "no-param-reassign": [
+            "off",
+            "always"
+        ],
+        "react/prefer-stateless-function": [
+            "off",
+            "always"
+        ],
+        "jsx-a11y/no-static-element-interactions": [
+            "off",
+            {
+                "handlers": [
+                    "onClick",
+                    "onMouseDown",
+                    "onMouseUp",
+                    "onKeyPress",
+                    "onKeyDown",
+                    "onKeyUp"
+                ]
+            }
+        ],
+        "react/self-closing-comp": [
+            "off",
+            "always"
+        ],
+        "jsx-a11y/anchor-has-content": [
+            "off",
+            "always"
+        ],
+        "comma-dangle": [
+            "error",
+            {
+                "arrays": "never",
+                "objects": "never",
+                "imports": "never",
+                "exports": "never",
+                "functions": "never"
+            }
+        ]
+    }
+}
