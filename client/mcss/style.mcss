@@ -1,3 +1,11 @@
 $prefix = 'WD_';
+$brand-primary = #4a89db;
+$brand-success = #00c1d1;
+$brand-info = #2ccc71;
+$brand-warning = #f3ae37;
+$brand-danger = #f73838;
+
+@import "mass/mass/index.mcss";
 @import "module.mcss";
 @import "tab.mcss";
+@import "switcher.mcss";

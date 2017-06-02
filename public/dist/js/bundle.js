@@ -28809,6 +28809,10 @@
 	
 	var _Collapse2 = _interopRequireDefault(_Collapse);
 	
+	var _Switcher = __webpack_require__(396);
+	
+	var _Switcher2 = _interopRequireDefault(_Switcher);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28891,7 +28895,7 @@
 	                ),
 	                _react2.default.createElement(
 	                    _Tab2.default,
-	                    { selected: this.state.selected, isToggle: this.state.flag, className: 'WD_nav-tabs' },
+	                    { selected: this.state.selected, className: 'WD_nav-tabs' },
 	                    _react2.default.createElement(
 	                        _Tab.TabPane,
 	                        { label: 'tab 1' },
@@ -28944,7 +28948,10 @@
 	                            'Collapse 2'
 	                        )
 	                    )
-	                )
+	                ),
+	                _react2.default.createElement(_Switcher2.default, { className: 'WD_switcher', onChange: function onChange(checked) {
+	                        console.log(checked);
+	                    } })
 	            );
 	        }
 	    }]);
@@ -47194,6 +47201,118 @@
 	module.exports = {
 	  registerEffect: registerEffect
 	};
+
+/***/ },
+/* 396 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _classnames = __webpack_require__(299);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var noop = function noop() {};
+	
+	var Switcher = function (_Component) {
+	    _inherits(Switcher, _Component);
+	
+	    function Switcher(props) {
+	        _classCallCheck(this, Switcher);
+	
+	        var _this = _possibleConstructorReturn(this, (Switcher.__proto__ || Object.getPrototypeOf(Switcher)).call(this, props));
+	
+	        var checked = false;
+	        if ('checked' in props) {
+	            checked = !!props.checked;
+	        } else {
+	            checked = !!props.defaultChecked;
+	        }
+	        _this.state = {
+	            checked: checked
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(Switcher, [{
+	        key: 'setChecked',
+	        value: function setChecked(checked) {
+	            this.setState({
+	                checked: checked
+	            });
+	            this.props.onChange(checked);
+	        }
+	    }, {
+	        key: 'toggle',
+	        value: function toggle() {
+	            var checked = !this.state.checked;
+	            this.setChecked(checked);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _classNames;
+	
+	            var _props = this.props,
+	                className = _props.className,
+	                disabled = _props.disabled,
+	                checkedChildren = _props.checkedChildren,
+	                unCheckedChildren = _props.unCheckedChildren,
+	                restProps = _objectWithoutProperties(_props, ['className', 'disabled', 'checkedChildren', 'unCheckedChildren']);
+	
+	            var checked = this.state.checked;
+	            var switcherClasses = (0, _classnames2.default)((_classNames = {}, _defineProperty(_classNames, className, !!className), _defineProperty(_classNames, 'checked', checked), _defineProperty(_classNames, 'disabled', disabled), _classNames));
+	            return _react2.default.createElement(
+	                'span',
+	                _extends({}, restProps, {
+	                    className: switcherClasses,
+	                    onClick: disabled ? noop : this.toggle.bind(this)
+	                }),
+	                _react2.default.createElement(
+	                    'span',
+	                    { className: 'inner' },
+	                    checked ? checkedChildren : unCheckedChildren
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Switcher;
+	}(_react.Component);
+	
+	Switcher.defaultProps = {
+	    checkedChildren: '开',
+	    unCheckedChildren: '关',
+	    className: '',
+	    defaultChecked: false,
+	    onChange: noop
+	};
+	
+	exports.default = Switcher;
 
 /***/ }
 /******/ ]);

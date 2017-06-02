@@ -5,6 +5,7 @@ import Lists from '../component/list';
 import Modal from '../component/Modal';
 import Tabs, { TabPane } from '../component/Tab';
 import Collapse, { CollapsePanel } from '../component/Collapse';
+import Switcher from '../component/Switcher';
 
 class App extends React.Component {
     constructor(props) {
@@ -45,7 +46,7 @@ class App extends React.Component {
                     <button onClick={() => { this.switchFlag(); }}>x</button>
                 </Modal>
 
-                <Tabs selected={this.state.selected} isToggle={this.state.flag} className="WD_nav-tabs">
+                <Tabs selected={this.state.selected} className="WD_nav-tabs">
                     <TabPane label="tab 1">
                         tab 1111
                     </TabPane>
@@ -67,6 +68,8 @@ class App extends React.Component {
                         <div>Collapse 2</div>
                     </CollapsePanel>
                 </Collapse>
+
+                <Switcher className='WD_switcher' onChange={(checked) => {console.log(checked)}} />
 
             </div>
         );
