@@ -46,7 +46,19 @@ class App extends React.Component {
                     <button onClick={() => { this.switchFlag(); }}>x</button>
                 </Modal>
 
-                <Tabs selected={this.state.selected} className="WD_nav-tabs">
+                <Tabs selected={this.state.selected} className="WD_nav WD_nav-tabs">
+                    <TabPane label="tab 1">
+                        tab 1111
+                    </TabPane>
+                    <TabPane label="tab 2" disabled>
+                        tab 2222
+                    </TabPane>
+                    <TabPane label="tab 3">
+                        tab 3333
+                    </TabPane>
+                </Tabs>
+
+                <Tabs selected={this.state.selected} className="WD_nav WD_nav-slides">
                     <TabPane label="tab 1">
                         tab 1111
                     </TabPane>
@@ -70,6 +82,8 @@ class App extends React.Component {
                 </Collapse>
 
                 <Switcher className='WD_switcher' onChange={(checked) => {console.log(checked)}} />
+                <Switcher className='WD_switcher' disabled onChange={(checked) => {console.log(checked)}} />
+                <Switcher className='WD_switcher WD_switcher-sm' onChange={(checked) => {console.log(checked)}} />
 
             </div>
         );

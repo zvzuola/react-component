@@ -5,12 +5,7 @@ class Switcher extends Component {
 
     constructor(props) {
         super(props);
-        let checked = false;
-        if ('checked' in props) {
-            checked = !!props.checked;
-        } else {
-            checked = !!props.defaultChecked;
-        }
+        let checked = !!props.checked;
         this.state = {
             checked
         }
@@ -55,7 +50,7 @@ Switcher.defaultProps = {
     checkedChildren: '开',
     unCheckedChildren: '关',
     className: '',
-    defaultChecked: false,
+    checked: false,
     onChange: noop,
 };
 

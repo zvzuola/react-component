@@ -1,4 +1,6 @@
-$switcher-bg = $brand-primary;
+$switcher-checked-bg = $brand-primary;
+$switcher-bg = #ccc;
+$switcher-disabled-bg = #f3f3f3;
 
 .#{$prefix}switcher {
     position: relative;
@@ -8,6 +10,7 @@ $switcher-bg = $brand-primary;
     border-radius: 11px;
     background-color: $switcher-bg;
     cursor: pointer;
+    $transition: background-color ease-in-out .3s;
     .inner {
         position: absolute;
         left: 26px;
@@ -29,6 +32,7 @@ $switcher-bg = $brand-primary;
     }
 
     &.checked {
+        background-color: $switcher-checked-bg;        
         &:after {
             left: 24px;
         }
@@ -38,7 +42,39 @@ $switcher-bg = $brand-primary;
     }
 
     &.disabled {
-        background-color: #f3f3f3;
+        background-color: $switcher-disabled-bg;
         cursor: not-allowed;
+        &:after {
+            background-color: #ccc;                    
+        }
+        .inner {
+            color: #ccc;
+        }
+    }
+}
+
+.#{$prefix}switcher-sm {
+    width: 28px;
+    height: 14px;
+    border-radius: 7px;
+    .inner {
+        display: none;
+        left: 13px;
+        line-height: 14px;
+    }
+    &:after {
+        top: 1px;
+        left: 1px;
+        width: 12px;
+        height: 12px;
+    }
+
+    &.checked {
+        &:after {
+            left: 15px;
+        }
+        .inner {
+            left: 3px;
+        }
     }
 }

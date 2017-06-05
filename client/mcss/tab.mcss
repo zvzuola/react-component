@@ -1,36 +1,111 @@
 //== Tabs
 $nav-tabs-border-color=                           #ddd;
-$nav-tabs-link-hover-border-color=                #eee;
+$nav-tabs-link-bg=                                #f7f7f7;
+$nav-tabs-link-color=                             #666;
+$nav-tabs-link-hover-bg=                          #f2f2f2;
+$nav-tabs-link-hover-border-color=                #ddd;
 $nav-tabs-active-link-hover-bg=                   #fff;
-$nav-tabs-active-link-hover-color=                #555;
+$nav-tabs-active-link-hover-color=                $brand-primary;
 $nav-tabs-active-link-hover-border-color=         #ddd;
-$nav-tabs-justified-link-border-color=            #ddd;
-$nav-tabs-justified-active-link-border-color=     #fff;
+$nav-tabs-disabled-link-hover-bg=                 $nav-tabs-link-bg;
+$nav-tabs-disabled-link-hover-color=              #ccc;
+
+$nav-slides-link-color=                           #666;
+$nav-slides-border-color=                         #ddd;
+$nav-slides-link-hover-color=                     $brand-primary;
+$nav-slides-active-link-hover-color=              $brand-primary;
+$nav-slides-active-link-hover-border-color=       $brand-primary;
+$nav-slides-disabled-link-hover-color=            #ccc;
+
+.#{$prefix}nav {
+  padding: 0;
+  list-style: none;
+  $clearfix();
+  > li {
+    float: left;
+    > a {
+      position: relative;
+      display: block;
+      padding: 10px 15px;
+      text-decoration: none;
+    }
+  }
+}
 
 .#{$prefix}nav-tabs {
   border-bottom: 1px solid $nav-tabs-border-color;
+  
   > li {
-    float: left;
-    // Make the list-items overlay the bottom border
     margin-bottom: -1px;
+    + li {
+      margin-left: 2px;
+    }
     > a {
-      border: 1px solid transparent;
+      border: 1px solid $nav-tabs-border-color;
       border-radius: 2px 2px 0 0;
+      color: $nav-tabs-link-color;
+      background-color: $nav-tabs-link-bg;
       &:hover {
+        background-color: $nav-tabs-link-hover-bg;
         border-color: $nav-tabs-link-hover-border-color $nav-tabs-link-hover-border-color $nav-tabs-border-color;
       }
     }
 
-    // Active state, and its :hover to override normal :hover
     &.z-crt > a {
       &,
       &:hover,
       &:focus {
         color: $nav-tabs-active-link-hover-color;
         background-color: $nav-tabs-active-link-hover-bg;
-        border: 1px solid $nav-tabs-active-link-hover-border-color;
+        border-color: $nav-tabs-active-link-hover-border-color;
         border-bottom-color: transparent;
         cursor: default;
+      }
+    }
+
+    &.z-dis > a {
+      &,
+      &:hover,
+      &:focus {
+        color: $nav-tabs-disabled-link-hover-color;
+        background-color: $nav-tabs-disabled-link-hover-bg;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+.#{$prefix}nav-slides {
+  border-bottom: 1px solid $nav-slides-border-color;
+  > li {
+    margin-bottom: -1px;
+    + li {
+      margin-left: 2px;
+    }
+    > a {
+      color: $nav-slides-link-color;
+      border-bottom: 2px solid transparent;
+      &:hover {
+        color: $nav-slides-link-hover-color;
+      }
+    }
+
+    &.z-crt > a {
+      &,
+      &:hover,
+      &:focus {
+        color: $nav-slides-active-link-hover-color;
+        border-bottom-color: $nav-slides-active-link-hover-border-color;
+        cursor: default;
+      }
+    }
+
+    &.z-dis > a {
+      &,
+      &:hover,
+      &:focus {
+        color: $nav-slides-disabled-link-hover-color;
+        cursor: not-allowed;
       }
     }
   }

@@ -28895,7 +28895,26 @@
 	                ),
 	                _react2.default.createElement(
 	                    _Tab2.default,
-	                    { selected: this.state.selected, className: 'WD_nav-tabs' },
+	                    { selected: this.state.selected, className: 'WD_nav WD_nav-tabs' },
+	                    _react2.default.createElement(
+	                        _Tab.TabPane,
+	                        { label: 'tab 1' },
+	                        'tab 1111'
+	                    ),
+	                    _react2.default.createElement(
+	                        _Tab.TabPane,
+	                        { label: 'tab 2', disabled: true },
+	                        'tab 2222'
+	                    ),
+	                    _react2.default.createElement(
+	                        _Tab.TabPane,
+	                        { label: 'tab 3' },
+	                        'tab 3333'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _Tab2.default,
+	                    { selected: this.state.selected, className: 'WD_nav WD_nav-slides' },
 	                    _react2.default.createElement(
 	                        _Tab.TabPane,
 	                        { label: 'tab 1' },
@@ -28950,6 +28969,12 @@
 	                    )
 	                ),
 	                _react2.default.createElement(_Switcher2.default, { className: 'WD_switcher', onChange: function onChange(checked) {
+	                        console.log(checked);
+	                    } }),
+	                _react2.default.createElement(_Switcher2.default, { className: 'WD_switcher', disabled: true, onChange: function onChange(checked) {
+	                        console.log(checked);
+	                    } }),
+	                _react2.default.createElement(_Switcher2.default, { className: 'WD_switcher WD_switcher-sm', onChange: function onChange(checked) {
 	                        console.log(checked);
 	                    } })
 	            );
@@ -47246,12 +47271,7 @@
 	
 	        var _this = _possibleConstructorReturn(this, (Switcher.__proto__ || Object.getPrototypeOf(Switcher)).call(this, props));
 	
-	        var checked = false;
-	        if ('checked' in props) {
-	            checked = !!props.checked;
-	        } else {
-	            checked = !!props.defaultChecked;
-	        }
+	        var checked = !!props.checked;
 	        _this.state = {
 	            checked: checked
 	        };
@@ -47308,7 +47328,7 @@
 	    checkedChildren: '开',
 	    unCheckedChildren: '关',
 	    className: '',
-	    defaultChecked: false,
+	    checked: false,
 	    onChange: noop
 	};
 	
