@@ -6,6 +6,8 @@ import Modal from '../component/Modal';
 import Tabs, { TabPane } from '../component/Tab';
 import Collapse, { CollapsePanel } from '../component/Collapse';
 import Switcher from '../component/Switcher';
+import Perf from 'react-addons-perf';
+window.Perf = Perf;
 
 class App extends React.Component {
     constructor(props) {
@@ -13,7 +15,8 @@ class App extends React.Component {
         this.state = {
             list: fromJS([{ cnt: '1' }, { cnt: '2' }, { cnt: '3' }]),
             flag: false,
-            selected: 0
+            selected: 0,
+            tempObj: [1, 2]
         };
     }
 
@@ -33,20 +36,28 @@ class App extends React.Component {
     componentWillUpdate() {
     }
 
+    updateObj() {
+        let tempObj = this.state.tempObj
+        this.state.tempObj.push(3)
+        this.setState({ tempObj })
+    }
+
     render() {
         return (
             <div>
                 <button onClick={() => { this.switchFlag(); }}>{this.state.flag.toString()}</button>
                 <button onClick={this.addItem.bind(this)}>添加</button>
-                <Lists list={this.state.list} />
+                <Lists list={this.state.list} tempObj={this.state.tempObj} />
                 {this.props.children}
+
+                <button onClick={() => { this.updateObj() }}>更新</button>
 
                 <Modal show={this.state.flag} className="m-modal">
                     <div>Modal</div>
                     <button onClick={() => { this.switchFlag(); }}>x</button>
                 </Modal>
 
-                <Tabs selected={this.state.selected} className="WD_nav WD_nav-tabs">
+                <Tabs selected={this.state.selected} className="nav nav-tabs">
                     <TabPane label="tab 1">
                         tab 1111
                     </TabPane>
@@ -58,7 +69,7 @@ class App extends React.Component {
                     </TabPane>
                 </Tabs>
 
-                <Tabs selected={this.state.selected} className="WD_nav WD_nav-slides">
+                <Tabs selected={this.state.selected} className="nav nav-slides">
                     <TabPane label="tab 1">
                         tab 1111
                     </TabPane>
@@ -81,9 +92,11 @@ class App extends React.Component {
                     </CollapsePanel>
                 </Collapse>
 
-                <Switcher className='WD_switcher' onChange={(checked) => {console.log(checked)}} />
-                <Switcher className='WD_switcher' disabled onChange={(checked) => {console.log(checked)}} />
-                <Switcher className='WD_switcher WD_switcher-sm' onChange={(checked) => {console.log(checked)}} />
+                <Switcher className='switcher' onChange={(checked) => { console.log(checked) }} />
+                <Switcher className='switcher' disabled onChange={(checked) => { console.log(checked) }} />
+                <Switcher className='switcher switcher-sm' onChange={(checked) => { console.log(checked) }} />
+
+                <Test />
 
             </div>
         );
@@ -93,3 +106,12 @@ const mapStateToProps = state => ({
     list: state.list
 });
 export default connect(mapStateToProps)(App);
+
+class Test extends React.Component {
+    componentDidMount() {
+        console.log('did mount');
+    }
+    render() {
+        return null;
+    }
+}

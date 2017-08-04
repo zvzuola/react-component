@@ -19,8 +19,8 @@ class Tabs extends Component {
             if (!disabled) { props.onClick = this.handleLabelClick.bind(this, index); }
 
             const labelClasses = classNames({
-                'z-crt': active,
-                'z-dis': disabled
+                'active': active,
+                'disabled': disabled
             });
 
             return (

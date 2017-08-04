@@ -35,7 +35,7 @@ class Modal extends Component {
                 : `0ms left ${transitionTimeOut}ms`
         };
         return (
-            <Layout>
+            <Layout style={style}>
                 <div>
                     <div style={style}>
                         <ReactCSSTransitionGroup

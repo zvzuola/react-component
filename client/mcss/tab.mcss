@@ -51,7 +51,7 @@ $nav-slides-disabled-link-hover-color=            #ccc;
       }
     }
 
-    &.z-crt > a {
+    &.active > a {
       &,
       &:hover,
       &:focus {
@@ -63,7 +63,7 @@ $nav-slides-disabled-link-hover-color=            #ccc;
       }
     }
 
-    &.z-dis > a {
+    &.disabled > a {
       &,
       &:hover,
       &:focus {
@@ -90,7 +90,7 @@ $nav-slides-disabled-link-hover-color=            #ccc;
       }
     }
 
-    &.z-crt > a {
+    &.active > a {
       &,
       &:hover,
       &:focus {
@@ -100,7 +100,7 @@ $nav-slides-disabled-link-hover-color=            #ccc;
       }
     }
 
-    &.z-dis > a {
+    &.disabled > a {
       &,
       &:hover,
       &:focus {

@@ -28813,6 +28813,10 @@
 	
 	var _Switcher2 = _interopRequireDefault(_Switcher);
 	
+	var _reactAddonsPerf = __webpack_require__(397);
+	
+	var _reactAddonsPerf2 = _interopRequireDefault(_reactAddonsPerf);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28820,6 +28824,8 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	window.Perf = _reactAddonsPerf2.default;
 	
 	var App = function (_React$Component) {
 	    _inherits(App, _React$Component);
@@ -28832,7 +28838,8 @@
 	        _this.state = {
 	            list: (0, _immutable.fromJS)([{ cnt: '1' }, { cnt: '2' }, { cnt: '3' }]),
 	            flag: false,
-	            selected: 0
+	            selected: 0,
+	            tempObj: [1, 2]
 	        };
 	        return _this;
 	    }
@@ -28856,6 +28863,13 @@
 	        key: 'componentWillUpdate',
 	        value: function componentWillUpdate() {}
 	    }, {
+	        key: 'updateObj',
+	        value: function updateObj() {
+	            var tempObj = this.state.tempObj;
+	            this.state.tempObj.push(3);
+	            this.setState({ tempObj: tempObj });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var _this2 = this;
@@ -28875,8 +28889,15 @@
 	                    { onClick: this.addItem.bind(this) },
 	                    '\u6DFB\u52A0'
 	                ),
-	                _react2.default.createElement(_list2.default, { list: this.state.list }),
+	                _react2.default.createElement(_list2.default, { list: this.state.list, tempObj: this.state.tempObj }),
 	                this.props.children,
+	                _react2.default.createElement(
+	                    'button',
+	                    { onClick: function onClick() {
+	                            _this2.updateObj();
+	                        } },
+	                    '\u66F4\u65B0'
+	                ),
 	                _react2.default.createElement(
 	                    _Modal2.default,
 	                    { show: this.state.flag, className: 'm-modal' },
@@ -28895,7 +28916,7 @@
 	                ),
 	                _react2.default.createElement(
 	                    _Tab2.default,
-	                    { selected: this.state.selected, className: 'WD_nav WD_nav-tabs' },
+	                    { selected: this.state.selected, className: 'nav nav-tabs' },
 	                    _react2.default.createElement(
 	                        _Tab.TabPane,
 	                        { label: 'tab 1' },
@@ -28914,7 +28935,7 @@
 	                ),
 	                _react2.default.createElement(
 	                    _Tab2.default,
-	                    { selected: this.state.selected, className: 'WD_nav WD_nav-slides' },
+	                    { selected: this.state.selected, className: 'nav nav-slides' },
 	                    _react2.default.createElement(
 	                        _Tab.TabPane,
 	                        { label: 'tab 1' },
@@ -28968,15 +28989,16 @@
 	                        )
 	                    )
 	                ),
-	                _react2.default.createElement(_Switcher2.default, { className: 'WD_switcher', onChange: function onChange(checked) {
+	                _react2.default.createElement(_Switcher2.default, { className: 'switcher', onChange: function onChange(checked) {
 	                        console.log(checked);
 	                    } }),
-	                _react2.default.createElement(_Switcher2.default, { className: 'WD_switcher', disabled: true, onChange: function onChange(checked) {
+	                _react2.default.createElement(_Switcher2.default, { className: 'switcher', disabled: true, onChange: function onChange(checked) {
 	                        console.log(checked);
 	                    } }),
-	                _react2.default.createElement(_Switcher2.default, { className: 'WD_switcher WD_switcher-sm', onChange: function onChange(checked) {
+	                _react2.default.createElement(_Switcher2.default, { className: 'switcher switcher-sm', onChange: function onChange(checked) {
 	                        console.log(checked);
-	                    } })
+	                    } }),
+	                _react2.default.createElement(Test, null)
 	            );
 	        }
 	    }]);
@@ -28990,6 +29012,30 @@
 	    };
 	};
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(App);
+	
+	var Test = function (_React$Component2) {
+	    _inherits(Test, _React$Component2);
+	
+	    function Test() {
+	        _classCallCheck(this, Test);
+	
+	        return _possibleConstructorReturn(this, (Test.__proto__ || Object.getPrototypeOf(Test)).apply(this, arguments));
+	    }
+	
+	    _createClass(Test, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            console.log('did mount');
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return null;
+	        }
+	    }]);
+	
+	    return Test;
+	}(_react2.default.Component);
 
 /***/ },
 /* 274 */
@@ -34009,6 +34055,11 @@
 	    }
 	
 	    _createClass(List, [{
+	        key: 'componentDidUpdate',
+	        value: function componentDidUpdate(prevProps, prevState) {
+	            console.log('updated');
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -34020,7 +34071,8 @@
 	                        { key: index },
 	                        list.get('cnt')
 	                    );
-	                })
+	                }),
+	                this.props.tempObj
 	            );
 	        }
 	    }]);
@@ -34117,7 +34169,7 @@
 	            };
 	            return _react2.default.createElement(
 	                _Layout2.default,
-	                null,
+	                { style: style },
 	                _react2.default.createElement(
 	                    'div',
 	                    null,
@@ -37106,8 +37158,8 @@
 	                }
 	
 	                var labelClasses = (0, _classnames2.default)({
-	                    'z-crt': active,
-	                    'z-dis': disabled
+	                    'active': active,
+	                    'disabled': disabled
 	                });
 	
 	                return _react2.default.createElement(
@@ -47333,6 +47385,12 @@
 	};
 	
 	exports.default = Switcher;
+
+/***/ },
+/* 397 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(284);
 
 /***/ }
 /******/ ]);
