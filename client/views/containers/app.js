@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fromJS } from 'immutable';
+import Perf from 'react-addons-perf';
 import Lists from '../component/list';
 import Modal from '../component/Modal';
 import Tabs, { TabPane } from '../component/Tab';
 import Collapse, { CollapsePanel } from '../component/Collapse';
 import Switcher from '../component/Switcher';
-import Perf from 'react-addons-perf';
+
 window.Perf = Perf;
 
 class App extends React.Component {
@@ -20,43 +21,42 @@ class App extends React.Component {
         };
     }
 
-    componentDidMount() {
-    }
-
     addItem() {
         this.setState({
             list: this.state.list.push(fromJS({ cnt: Math.random() }))
         });
     }
 
+    updateObj() {
+        const tempObj = this.state.tempObj;
+        this.state.tempObj.push(3);
+        this.setState({ tempObj });
+        // Lists 组件不会更新，因为是pureComponent 而且tempObj引用地址没有更新
+    }
+
     switchFlag() {
         this.setState({ flag: !this.state.flag });
-    }
-
-    componentWillUpdate() {
-    }
-
-    updateObj() {
-        let tempObj = this.state.tempObj
-        this.state.tempObj.push(3)
-        this.setState({ tempObj })
     }
 
     render() {
         return (
             <div>
-                <button onClick={() => { this.switchFlag(); }}>{this.state.flag.toString()}</button>
-                <button onClick={this.addItem.bind(this)}>添加</button>
-                <Lists list={this.state.list} tempObj={this.state.tempObj} />
-                {this.props.children}
+                <h1>测试组件</h1>
+                <div>
+                    <button onClick={this.addItem.bind(this)}>添加</button>
+                    <button onClick={() => { this.updateObj(); }}>更新</button>
+                    <Lists list={this.state.list} tempObj={this.state.tempObj} />
+                </div>
 
-                <button onClick={() => { this.updateObj() }}>更新</button>
-
+                <h1>Modal组件</h1>
+                <button onClick={() => { this.switchFlag(); }}>{this.state.flag ? '关闭弹框' : '打开弹框'}</button>
                 <Modal show={this.state.flag} className="m-modal">
                     <div>Modal</div>
                     <button onClick={() => { this.switchFlag(); }}>x</button>
                 </Modal>
 
+                <h1>tab组件</h1>
+                <button onClick={() => this.setState({ selected: null })}>收起</button>
                 <Tabs selected={this.state.selected} className="nav nav-tabs">
                     <TabPane label="tab 1">
                         tab 1111
@@ -68,7 +68,6 @@ class App extends React.Component {
                         tab 3333
                     </TabPane>
                 </Tabs>
-
                 <Tabs selected={this.state.selected} className="nav nav-slides">
                     <TabPane label="tab 1">
                         tab 1111
@@ -81,8 +80,7 @@ class App extends React.Component {
                     </TabPane>
                 </Tabs>
 
-                <button onClick={() => this.setState({ selected: null })}>收起</button>
-
+                <h1>Collapse组件</h1>
                 <Collapse accordion>
                     <CollapsePanel header={<span>collapse header 1</span>}>
                         <div>Collapse 1</div>
@@ -92,11 +90,10 @@ class App extends React.Component {
                     </CollapsePanel>
                 </Collapse>
 
-                <Switcher className='switcher' onChange={(checked) => { console.log(checked) }} />
-                <Switcher className='switcher' disabled onChange={(checked) => { console.log(checked) }} />
-                <Switcher className='switcher switcher-sm' onChange={(checked) => { console.log(checked) }} />
-
-                <Test />
+                <h1>Switcher组件</h1>
+                <Switcher className="switcher" onChange={(checked) => { console.log(checked); }} />
+                <Switcher className="switcher" disabled onChange={(checked) => { console.log(checked); }} />
+                <Switcher className="switcher switcher-sm" onChange={(checked) => { console.log(checked); }} />
 
             </div>
         );
@@ -106,12 +103,3 @@ const mapStateToProps = state => ({
     list: state.list
 });
 export default connect(mapStateToProps)(App);
-
-class Test extends React.Component {
-    componentDidMount() {
-        console.log('did mount');
-    }
-    render() {
-        return null;
-    }
-}

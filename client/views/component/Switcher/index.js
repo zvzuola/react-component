@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+
 const noop = () => { };
 class Switcher extends Component {
 
     constructor(props) {
         super(props);
-        let checked = !!props.checked;
+        const checked = !!props.checked;
         this.state = {
             checked
-        }
+        };
     }
 
     setChecked(checked) {
         this.setState({
-            checked,
+            checked
         });
         this.props.onChange(checked);
     }
@@ -29,16 +30,16 @@ class Switcher extends Component {
         const checked = this.state.checked;
         const switcherClasses = classNames({
             [className]: !!className,
-            [`checked`]: checked,
-            [`disabled`]: disabled,
+            'checked': checked,
+            'disabled': disabled
         });
         return (
             <span
-                {...restProps}
-                className={switcherClasses}
-                onClick={disabled ? noop : this.toggle.bind(this)}
+              {...restProps}
+              className={switcherClasses}
+              onClick={disabled ? noop : this.toggle.bind(this)}
             >
-                <span className={`inner`}>
+                <span className={'inner'}>
                     {checked ? checkedChildren : unCheckedChildren}
                 </span>
             </span>
@@ -51,7 +52,7 @@ Switcher.defaultProps = {
     unCheckedChildren: '关',
     className: '',
     checked: false,
-    onChange: noop,
+    onChange: noop
 };
 
 export default Switcher;
